@@ -1,0 +1,166 @@
+# Configuration optimized for 48GB GPU with MINDlarge dataset
+# Target: RTX A6000, RTX 6000 Ada, A40, A100-40GB, A100-80GB, H100
+# Optimized for maximum throughput and performance
+
+data:
+  # Training data paths - MINDlarge dataset
+  train_news: "Data/raw/MINDlarge_train/news.tsv"
+  train_behaviors: "Data/raw/MINDlarge_train/behaviors.tsv"
+  
+  # Validation data paths
+  val_news: "Data/raw/MINDlarge_dev/news.tsv"
+  val_behaviors: "Data/raw/MINDlarge_dev/behaviors.tsv"
+
+  test_news: "Data/raw/MINDlarge_test/news.tsv"
+  test_behaviors: "Data/raw/MINDlarge_test/behaviors.tsv"
+  
+  # Optional: LLM-generated descriptions
+  llm_description: "Data/generated/news_descriptions.json"
+
+model:
+  # Use largest DeBERTa model for best performance
+  pretrained: "microsoft/deberta-v3-base"  # 900M parameters
+  max_length: 128  # Increased for better context (48GB can handle this)
+  conv_kernel_num: 512  # Increased from 400 for better feature extraction
+  query_dim: 256  # Increased from 200 for better representation
+
+training:
+  # Optimized hyperparameters for 48GB GPU
+  batch_size: 4  # Large batch size for stable training
+  lr: 0.00001  # Slightly lower LR for large batch
+  epochs: 3  # More epochs for better convergence
+  npratio: 8  # Higher negative ratio for better contrastive learning
+  history_size: 100  # Increased history for better user modeling
+  num_workers: 8  # More workers for faster data loading
+  
+  # Advanced training options
+  use_hard_negative: true  # Enable hard negative sampling
+  device: "cuda"
+  
+  # Learning rate scheduler - optimized for longer training
+  use_scheduler: true
+  scheduler_type: "cosine"  # Cosine annealing for smooth decay
+  warmup_ratio: 0.05  # Shorter warmup for large batch
+  min_lr_ratio: 0.01  # Small minimum LR to avoid complete decay
+  
+  # Gradient accumulation for even larger effective batch
+  gradient_accumulation_steps: 2  # Effective batch = 32 * 2 = 64
+  
+  # Mixed precision for speed and memory efficiency
+  use_mixed_precision: true  # Essential for large models
+  
+  # Monitoring and logging
+  use_tensorboard: true
+  
+  # Checkpoint management - keep more for large training
+  keep_last_n_checkpoints: 5  # Keep more checkpoints
+  metric_for_best_model: "ndcg_at_10"
+  resume_from_checkpoint: false
+  
+  # Early stopping - more patience for large dataset
+  early_stopping_patience: 5  # More patience for convergence
+
+paths:
+  # Output directories
+  output_dir: "output/models"
+  log_dir: "output/logs"
+  checkpoint_dir: "output/checkpoints"
+  tensorboard_dir: "output/tensorboard"
+
+logging:
+  level: "INFO"
+  log_interval: 50  # More frequent logging for monitoring
+  use_json: false
+  enable_rotation: true
+  console_output: true
+
+llm:
+  # LLM configuration for description generation
+  provider: "openai"
+  model: "gpt-4o-mini"
+  temperature: 0.7
+  max_tokens: 250  # Slightly more tokens for richer descriptions
+  timeout: 30
+  max_retries: 3
+  retry_delay: 1.0
+  rate_limit_rpm: 100  # Higher rate limit for faster generation
+
+# Note: The following sections are for documentation and future enhancements
+# Current train.py doesn't use these parameters, but they're included for reference
+
+# Performance optimizations for 48GB GPU (for future implementation)
+performance:
+  # Memory optimizations
+  pin_memory: true  # Pin memory for faster GPU transfer
+  prefetch_factor: 4  # Higher prefetch for better pipeline
+  persistent_workers: true  # Keep workers alive between epochs
+  
+  # CUDA optimizations
+  cudnn_benchmark: true  # Enable cuDNN autotuner
+  cudnn_deterministic: false  # Disable for better performance
+  
+  # Compilation optimizations (PyTorch 2.0+)
+  compile_model: false  # Set to true if using PyTorch 2.0+
+  compile_mode: "default"  # Options: default, reduce-overhead, max-autotune
+
+# Advanced training strategies (for future implementation)
+advanced:
+  # Data sampling strategies
+  dynamic_negative_sampling: true  # Adjust negative sampling during training
+  curriculum_learning: false  # Start with easier examples
+  
+  # Regularization
+  weight_decay: 1e-3  # Stronger regularization for large model
+  dropout_rate: 0.1  # Dropout for regularization
+  
+  # Loss function enhancements
+  label_smoothing: 0.1  # Label smoothing for better generalization
+  focal_loss_alpha: 0.25  # Focal loss parameters
+  focal_loss_gamma: 2.0
+  
+  # Gradient clipping
+  max_grad_norm: 1.0  # Clip gradients to prevent explosion
+
+# Memory usage estimates (approximate)
+memory_estimates:
+  model_parameters: "~3.5GB"  # DeBERTa-xlarge + additional layers
+  batch_memory: "~12GB"  # batch_size=32, max_length=128
+  optimizer_states: "~7GB"  # AdamW states
+  gradient_accumulation: "~6GB"  # For accumulation_steps=2
+  buffer_overhead: "~8GB"  # CUDA context, intermediate tensors
+  total_estimated: "~36-40GB"  # Total usage
+  safety_margin: "8-12GB"  # Available for system and other processes
+
+# Expected performance
+performance_estimates:
+  # Training speed (approximate)
+  samples_per_second: "~800-1200"  # Depends on data complexity
+  time_per_epoch: "~2-3 hours"  # For MINDlarge dataset
+  total_training_time: "~10-15 hours"  # 5 epochs
+  
+  # Memory efficiency
+  gpu_utilization: "~80-85%"  # Target utilization
+  memory_utilization: "~75-80%"  # Safe memory usage
+  
+  # Expected metrics (baseline)
+  target_auc: ">0.68"
+  target_ndcg_10: ">0.35"
+  target_mrr: ">0.32"
+
+# Troubleshooting settings
+troubleshooting:
+  # If OOM (Out of Memory) occurs:
+  fallback_batch_size: 16  # Reduce batch size
+  fallback_max_length: 64  # Reduce sequence length
+  fallback_history_size: 50  # Reduce history size
+  fallback_accumulation_steps: 4  # Increase accumulation instead
+  
+  # If training is too slow:
+  fast_batch_size: 48  # Increase if memory allows
+  fast_num_workers: 12  # More workers if CPU allows
+  fast_prefetch_factor: 6  # Higher prefetch
+  
+  # If convergence issues:
+  stable_lr: 5e-6  # Lower learning rate
+  stable_warmup_ratio: 0.1  # Longer warmup
+  stable_weight_decay: 5e-4  # Lower weight decay

@@ -1,0 +1,61 @@
+# Configuration for training with LLM-generated descriptions
+# Updated for per-article descriptions
+
+data:
+  # Training data paths
+  train_news: "Data/raw/MINDlarge_train/news.tsv"
+  train_behaviors: "Data/raw/MINDlarge_train/behaviors.tsv"
+  
+  # Validation data paths
+  val_news: "Data/raw/MINDlarge_dev/news.tsv"
+  val_behaviors: "Data/raw/MINDlarge_dev/behaviors.tsv"
+  
+  # LLM-generated descriptions (per-article)
+  llm_description: "Data/generated/news_descriptions.json"
+
+model:
+  # Pre-trained model configuration
+  pretrained: "microsoft/deberta-v3-base"  # Changed from xlarge to base
+  max_length: 64
+  conv_kernel_num: 400
+  query_dim: 200
+
+training:
+  # Training hyperparameters
+  batch_size: 8
+  lr: 2e-5
+  epochs: 1
+  npratio: 4
+  history_size: 50
+  num_workers: 4
+  
+  # Advanced options
+  use_hard_negative: false
+  device: "cuda"
+  
+  # Optimizations
+  use_scheduler: true
+  scheduler_type: "cosine"
+  warmup_ratio: 0.1
+  min_lr_ratio: 0.0
+  gradient_accumulation_steps: 4
+  use_mixed_precision: true
+  
+  # TensorBoard
+  use_tensorboard: true
+  
+  # Checkpoint management
+  keep_last_n_checkpoints: 3
+  metric_for_best_model: "ndcg_at_10"
+  resume_from_checkpoint: false
+  early_stopping_patience: 3
+
+paths:
+  output_dir: "output/models"
+  log_dir: "output/logs"
+  checkpoint_dir: "output/checkpoints"
+  tensorboard_dir: "output/tensorboard"
+
+logging:
+  level: "INFO"
+  log_interval: 100

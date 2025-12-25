@@ -1,0 +1,41 @@
+# Configuration optimized for MIND large dataset
+# Requires more computational resources and training time
+
+data:
+  # Large dataset paths
+  train_news: "Data/raw/MINDlarge_train/news.tsv"
+  train_behaviors: "Data/raw/MINDlarge_train/behaviors.tsv"
+  val_news: "Data/raw/MINDlarge_dev/news.tsv"
+  val_behaviors: "Data/raw/MINDlarge_dev/behaviors.tsv"
+  
+  # LLM descriptions recommended for large dataset
+  llm_description: "Data/generated/llm_descriptions_large.json"
+
+model:
+  # Full model configuration
+  pretrained: "microsoft/deberta-v3-base"
+  max_length: 64
+  conv_kernel_num: 400
+  query_dim: 200
+
+training:
+  # Optimized for large dataset
+  batch_size: 32
+  lr: 1e-5
+  epochs: 10
+  npratio: 4
+  history_size: 50
+  num_workers: 8
+  
+  # Advanced features for large dataset
+  use_hard_negative: true
+  device: "cuda"
+
+paths:
+  output_dir: "output/large/models"
+  log_dir: "output/large/logs"
+  checkpoint_dir: "output/large/checkpoints"
+
+logging:
+  level: "INFO"
+  log_interval: 200

@@ -1,0 +1,41 @@
+# Debug configuration with reduced parameters
+# For quick testing and debugging purposes
+
+data:
+  # Small dataset for quick iteration
+  train_news: "Data/raw/MINDlarge_train/news.tsv"
+  train_behaviors: "Data/raw/MINDlarge_train/behaviors.tsv"
+  val_news: "Data/raw/MINDlarge_dev/news.tsv"
+  val_behaviors: "Data/raw/MINDlarge_dev/behaviors.tsv"
+  
+  # Skip LLM descriptions for faster debugging
+  llm_description: null
+
+model:
+  # Minimal model configuration
+  pretrained: "microsoft/deberta-v3-base"
+  max_length: 32  # Reduced for faster processing
+  conv_kernel_num: 200  # Reduced model size
+  query_dim: 100  # Reduced dimensionality
+
+training:
+  # Minimal training for quick debugging
+  batch_size: 4  # Small batch for faster iteration
+  lr: 5e-5  # Higher LR for faster convergence in debug
+  epochs: 1  # Single epoch for quick testing
+  npratio: 2  # Fewer negatives
+  history_size: 10  # Shorter history
+  num_workers: 2  # Fewer workers to reduce overhead
+  
+  # Disable advanced features
+  use_hard_negative: false
+  device: "cuda"
+
+paths:
+  output_dir: "output/debug/models"
+  log_dir: "output/debug/logs"
+  checkpoint_dir: "output/debug/checkpoints"
+
+logging:
+  level: "DEBUG"  # Verbose logging for debugging
+  log_interval: 10  # Frequent logging

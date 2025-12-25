@@ -1,0 +1,84 @@
+# Base configuration for news recommendation training
+# This serves as the default configuration template
+
+data:
+  # Training data paths
+  train_news: "Data/raw/MINDlarge_train/news.tsv"
+  train_behaviors: "Data/raw/MINDlarge_train/behaviors.tsv"
+  
+  # Validation data paths
+  val_news: "Data/raw/MINDlarge_dev/news.tsv"
+  val_behaviors: "Data/raw/MINDlarge_dev/behaviors.tsv"
+  
+  # Optional: LLM-generated descriptions
+  llm_description: "Data/generated/news_descriptions.json"
+
+model:
+  # Pre-trained model configuration
+  pretrained: "microsoft/deberta-v3-base"
+  max_length: 64
+  conv_kernel_num: 400
+  query_dim: 200
+
+training:
+  # Training hyperparameters
+  batch_size: 8
+  lr: 2e-5
+  epochs: 1
+  npratio: 4  # negative to positive ratio
+  history_size: 50
+  num_workers: 4
+  
+  # Advanced training options
+  use_hard_negative: True
+  device: "cuda"  # or "cpu"
+  
+  # Learning rate scheduler
+  use_scheduler: true  # Enable learning rate scheduling
+  scheduler_type: "cosine"  # Options: cosine, linear, constant
+  warmup_ratio: 0.1  # Ratio of warmup steps to total steps
+  min_lr_ratio: 0.0  # Minimum lr as ratio of initial lr
+  
+  # Gradient accumulation
+  gradient_accumulation_steps: 1  # Number of steps to accumulate gradients
+  
+  # Mixed precision training
+  use_mixed_precision: false  # Enable automatic mixed precision (AMP)
+  
+  # TensorBoard monitoring
+  use_tensorboard: true  # Enable TensorBoard logging
+  
+  # Checkpoint management
+  keep_last_n_checkpoints: 3  # Keep only last N checkpoints
+  metric_for_best_model: "ndcg_at_10"  # Metric to track for best model
+  resume_from_checkpoint: false  # Resume training from latest checkpoint
+  
+  # Early stopping
+  early_stopping_patience: 3  # Stop if no improvement for N epochs
+
+paths:
+  # Output directories
+  output_dir: "output/models"
+  log_dir: "output/logs"
+  checkpoint_dir: "output/checkpoints"
+  tensorboard_dir: "output/tensorboard"  # TensorBoard logs directory
+
+logging:
+  level: "INFO"
+  log_interval: 100
+  use_json: false  # Set to true for JSON-formatted logs
+  enable_rotation: true  # Enable log file rotation
+  console_output: true  # Enable console output
+
+llm:
+  # LLM provider configuration for description generation
+  provider: "openai"  # Options: openai, anthropic, ollama, lmstudio, local
+  model: "gpt-4o-mini"  # Model name
+  # api_key: "your-api-key-here"  # Or set via OPENAI_API_KEY / ANTHROPIC_API_KEY env var
+  # api_base: "http://localhost:11434"  # For Ollama or LM Studio
+  temperature: 0.7
+  max_tokens: 200
+  timeout: 30
+  max_retries: 3
+  retry_delay: 1.0
+  rate_limit_rpm: 60  # Requests per minute (optional)

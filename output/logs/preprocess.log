@@ -1,0 +1,186 @@
+
+(NewsRecommenderSystem) D:\vscode\Python\MIND>python -m src.scripts.preprocess --news Data/raw/MINDlarge_train/news.tsv --behaviors Data/raw/MINDlarge_train/behaviors.tsv --out_dir Data/processed/train
+2025-12-02 17:57:05 [INFO] preprocess.preprocess - ============================================================
+2025-12-02 17:57:05,053 INFO ============================================================
+2025-12-02 17:57:05 [INFO] preprocess.preprocess - Starting MIND dataset preprocessing
+2025-12-02 17:57:05,053 INFO Starting MIND dataset preprocessing
+2025-12-02 17:57:05 [INFO] preprocess.preprocess - ============================================================
+2025-12-02 17:57:05,053 INFO ============================================================
+2025-12-02 17:57:05 [INFO] preprocess.preprocess - News file: Data/raw/MINDlarge_train/news.tsv
+2025-12-02 17:57:05,053 INFO News file: Data/raw/MINDlarge_train/news.tsv
+2025-12-02 17:57:05 [INFO] preprocess.preprocess - Behaviors file: Data/raw/MINDlarge_train/behaviors.tsv
+2025-12-02 17:57:05,053 INFO Behaviors file: Data/raw/MINDlarge_train/behaviors.tsv
+2025-12-02 17:57:05 [INFO] preprocess.preprocess - Output directory: Data/processed/train
+2025-12-02 17:57:05,053 INFO Output directory: Data/processed/train
+2025-12-02 17:57:05 [INFO] preprocess.preprocess - Created output directory: Data/processed/train
+2025-12-02 17:57:05,053 INFO Created output directory: Data/processed/train
+2025-12-02 17:57:05 [INFO] preprocess.preprocess - Step 1/3: Loading data files
+2025-12-02 17:57:05,053 INFO Step 1/3: Loading data files
+2025-12-02 17:57:05 [INFO] preprocess.preprocess - Loading news data from Data/raw/MINDlarge_train/news.tsv
+2025-12-02 17:57:05,053 INFO Loading news data from Data/raw/MINDlarge_train/news.tsv
+2025-12-02 17:57:07 [INFO] preprocess.preprocess - Successfully loaded 101527 news articles
+2025-12-02 17:57:07,157 INFO Successfully loaded 101527 news articles
+2025-12-02 17:57:07 [INFO] preprocess.preprocess - Loading behavior data from Data/raw/MINDlarge_train/behaviors.tsv
+2025-12-02 17:57:07,173 INFO Loading behavior data from Data/raw/MINDlarge_train/behaviors.tsv
+2025-12-02 17:57:37 [INFO] preprocess.preprocess - Successfully loaded 2232748 impressions from 711222 users
+2025-12-02 17:57:37,163 INFO Successfully loaded 2232748 impressions from 711222 users
+2025-12-02 17:57:37 [INFO] preprocess.preprocess - Step 2/3: Building news metadata
+2025-12-02 17:57:37,163 INFO Step 2/3: Building news metadata
+Processing news: 100%|██████████████████████████████████████████████████████| 101527/101527 [00:08<00:00, 11801.81it/s]
+2025-12-02 17:57:45 [INFO] preprocess.preprocess - Built metadata for 101527 news articles
+2025-12-02 17:57:45,823 INFO Built metadata for 101527 news articles
+2025-12-02 17:57:48 [INFO] preprocess.preprocess - Saved Data/processed/train\news_meta.json (90.46 MB)
+2025-12-02 17:57:48,096 INFO Saved Data/processed/train\news_meta.json (90.46 MB)
+2025-12-02 17:57:48 [INFO] preprocess.preprocess - Step 3/3: Building impressions list
+2025-12-02 17:57:48,096 INFO Step 3/3: Building impressions list
+Processing behaviors: 100%|████████████████████████████████████████████████| 2232748/2232748 [04:29<00:00, 8289.59it/s]
+2025-12-02 18:02:17 [INFO] preprocess.preprocess - Built 2232748 impressions with 3383656 total clicks
+2025-12-02 18:02:17,446 INFO Built 2232748 impressions with 3383656 total clicks
+2025-12-02 18:04:07 [INFO] preprocess.preprocess - Saved Data/processed/train\impressions.json (1483.30 MB)
+2025-12-02 18:04:07,847 INFO Saved Data/processed/train\impressions.json (1483.30 MB)
+2025-12-02 18:04:07 [INFO] preprocess.preprocess - ============================================================
+2025-12-02 18:04:07,847 INFO ============================================================
+2025-12-02 18:04:07 [INFO] preprocess.preprocess - Preprocessing completed successfully!
+2025-12-02 18:04:07,851 INFO Preprocessing completed successfully!
+2025-12-02 18:04:07 [INFO] preprocess.preprocess - ============================================================
+2025-12-02 18:04:07,851 INFO ============================================================
+2025-12-02 18:04:07 [INFO] preprocess.preprocess - Statistics:
+2025-12-02 18:04:07,854 INFO Statistics:
+2025-12-02 18:04:07 [INFO] preprocess.preprocess -   - Total news articles: 101527
+2025-12-02 18:04:07,854 INFO   - Total news articles: 101527
+2025-12-02 18:04:08 [INFO] preprocess.preprocess -   - Total users: 711222
+2025-12-02 18:04:08,863 INFO   - Total users: 711222
+2025-12-02 18:04:08 [INFO] preprocess.preprocess -   - Total impressions: 2232748
+2025-12-02 18:04:08,866 INFO   - Total impressions: 2232748
+2025-12-02 18:04:08 [INFO] preprocess.preprocess -   - Total clicks: 3383656
+2025-12-02 18:04:08,866 INFO   - Total clicks: 3383656
+2025-12-02 18:04:08 [INFO] preprocess.preprocess -   - Click-through rate: 5.61%
+2025-12-02 18:04:08,866 INFO   - Click-through rate: 5.61%
+2025-12-02 18:04:08 [INFO] preprocess.preprocess - Output files saved to: Data/processed/train
+2025-12-02 18:04:08,866 INFO Output files saved to: Data/processed/train
+2025-12-02 18:04:08 [INFO] preprocess.preprocess - ============================================================
+2025-12-02 18:04:08,866 INFO ============================================================
+
+(NewsRecommenderSystem) D:\vscode\Python\MIND>python -m src.scripts.preprocess --news Data/raw/MINDlarge_dev/news.tsv --behaviors Data/raw/MINDlarge_dev/behaviors.tsv --out_dir Data/processed/dev
+2025-12-02 18:07:17 [INFO] preprocess.preprocess - ============================================================
+2025-12-02 18:07:17,375 INFO ============================================================
+2025-12-02 18:07:17 [INFO] preprocess.preprocess - Starting MIND dataset preprocessing
+2025-12-02 18:07:17,384 INFO Starting MIND dataset preprocessing
+2025-12-02 18:07:17 [INFO] preprocess.preprocess - ============================================================
+2025-12-02 18:07:17,384 INFO ============================================================
+2025-12-02 18:07:17 [INFO] preprocess.preprocess - News file: Data/raw/MINDlarge_dev/news.tsv
+2025-12-02 18:07:17,384 INFO News file: Data/raw/MINDlarge_dev/news.tsv
+2025-12-02 18:07:17 [INFO] preprocess.preprocess - Behaviors file: Data/raw/MINDlarge_dev/behaviors.tsv
+2025-12-02 18:07:17,384 INFO Behaviors file: Data/raw/MINDlarge_dev/behaviors.tsv
+2025-12-02 18:07:17 [INFO] preprocess.preprocess - Output directory: Data/processed/dev
+2025-12-02 18:07:17,387 INFO Output directory: Data/processed/dev
+2025-12-02 18:07:17 [INFO] preprocess.preprocess - Created output directory: Data/processed/dev
+2025-12-02 18:07:17,389 INFO Created output directory: Data/processed/dev
+2025-12-02 18:07:17 [INFO] preprocess.preprocess - Step 1/3: Loading data files
+2025-12-02 18:07:17,389 INFO Step 1/3: Loading data files
+2025-12-02 18:07:17 [INFO] preprocess.preprocess - Loading news data from Data/raw/MINDlarge_dev/news.tsv
+2025-12-02 18:07:17,389 INFO Loading news data from Data/raw/MINDlarge_dev/news.tsv
+2025-12-02 18:07:18 [INFO] preprocess.preprocess - Successfully loaded 72023 news articles
+2025-12-02 18:07:18,878 INFO Successfully loaded 72023 news articles
+2025-12-02 18:07:18 [INFO] preprocess.preprocess - Loading behavior data from Data/raw/MINDlarge_dev/behaviors.tsv
+2025-12-02 18:07:18,888 INFO Loading behavior data from Data/raw/MINDlarge_dev/behaviors.tsv
+2025-12-02 18:07:23 [INFO] preprocess.preprocess - Successfully loaded 376471 impressions from 255990 users
+2025-12-02 18:07:23,936 INFO Successfully loaded 376471 impressions from 255990 users
+2025-12-02 18:07:23 [INFO] preprocess.preprocess - Step 2/3: Building news metadata
+2025-12-02 18:07:23,939 INFO Step 2/3: Building news metadata
+Processing news: 100%|████████████████████████████████████████████████████████| 72023/72023 [00:06<00:00, 10422.38it/s]
+2025-12-02 18:07:30 [INFO] preprocess.preprocess - Built metadata for 72023 news articles
+2025-12-02 18:07:30,898 INFO Built metadata for 72023 news articles
+2025-12-02 18:07:32 [INFO] preprocess.preprocess - Saved Data/processed/dev\news_meta.json (62.98 MB)
+2025-12-02 18:07:32,530 INFO Saved Data/processed/dev\news_meta.json (62.98 MB)
+2025-12-02 18:07:32 [INFO] preprocess.preprocess - Step 3/3: Building impressions list
+2025-12-02 18:07:32,530 INFO Step 3/3: Building impressions list
+Processing behaviors: 100%|██████████████████████████████████████████████████| 376471/376471 [00:55<00:00, 6800.48it/s]
+2025-12-02 18:08:27 [INFO] preprocess.preprocess - Built 376471 impressions with 574845 total clicks
+2025-12-02 18:08:27,890 INFO Built 376471 impressions with 574845 total clicks
+2025-12-02 18:08:43 [INFO] preprocess.preprocess - Saved Data/processed/dev\impressions.json (249.15 MB)
+2025-12-02 18:08:43,823 INFO Saved Data/processed/dev\impressions.json (249.15 MB)
+2025-12-02 18:08:43 [INFO] preprocess.preprocess - ============================================================
+2025-12-02 18:08:43,823 INFO ============================================================
+2025-12-02 18:08:43 [INFO] preprocess.preprocess - Preprocessing completed successfully!
+2025-12-02 18:08:43,823 INFO Preprocessing completed successfully!
+2025-12-02 18:08:43 [INFO] preprocess.preprocess - ============================================================
+2025-12-02 18:08:43,823 INFO ============================================================
+2025-12-02 18:08:43 [INFO] preprocess.preprocess - Statistics:
+2025-12-02 18:08:43,823 INFO Statistics:
+2025-12-02 18:08:43 [INFO] preprocess.preprocess -   - Total news articles: 72023
+2025-12-02 18:08:43,827 INFO   - Total news articles: 72023
+2025-12-02 18:08:44 [INFO] preprocess.preprocess -   - Total users: 255990
+2025-12-02 18:08:44,000 INFO   - Total users: 255990
+2025-12-02 18:08:44 [INFO] preprocess.preprocess -   - Total impressions: 376471
+2025-12-02 18:08:44,000 INFO   - Total impressions: 376471
+2025-12-02 18:08:44 [INFO] preprocess.preprocess -   - Total clicks: 574845
+2025-12-02 18:08:44,000 INFO   - Total clicks: 574845
+2025-12-02 18:08:44 [INFO] preprocess.preprocess -   - Click-through rate: 2.15%
+2025-12-02 18:08:44,000 INFO   - Click-through rate: 2.15%
+2025-12-02 18:08:44 [INFO] preprocess.preprocess - Output files saved to: Data/processed/dev
+2025-12-02 18:08:44,000 INFO Output files saved to: Data/processed/dev
+2025-12-02 18:08:44 [INFO] preprocess.preprocess - ============================================================
+2025-12-02 18:08:44,000 INFO ============================================================
+
+(NewsRecommenderSystem) D:\vscode\Python\MIND>python -m src.scripts.preprocess --news Data/raw/MINDlarge_test/news.tsv --behaviors Data/raw/MINDlarge_test/behaviors.tsv --out_dir Data/processed/test
+2025-12-02 18:09:17 [INFO] preprocess.preprocess - ============================================================
+2025-12-02 18:09:17,479 INFO ============================================================
+2025-12-02 18:09:17 [INFO] preprocess.preprocess - Starting MIND dataset preprocessing
+2025-12-02 18:09:17,479 INFO Starting MIND dataset preprocessing
+2025-12-02 18:09:17 [INFO] preprocess.preprocess - ============================================================
+2025-12-02 18:09:17,479 INFO ============================================================
+2025-12-02 18:09:17 [INFO] preprocess.preprocess - News file: Data/raw/MINDlarge_test/news.tsv
+2025-12-02 18:09:17,479 INFO News file: Data/raw/MINDlarge_test/news.tsv
+2025-12-02 18:09:17 [INFO] preprocess.preprocess - Behaviors file: Data/raw/MINDlarge_test/behaviors.tsv
+2025-12-02 18:09:17,479 INFO Behaviors file: Data/raw/MINDlarge_test/behaviors.tsv
+2025-12-02 18:09:17 [INFO] preprocess.preprocess - Output directory: Data/processed/test
+2025-12-02 18:09:17,479 INFO Output directory: Data/processed/test
+2025-12-02 18:09:17 [INFO] preprocess.preprocess - Created output directory: Data/processed/test
+2025-12-02 18:09:17,479 INFO Created output directory: Data/processed/test
+2025-12-02 18:09:17 [INFO] preprocess.preprocess - Step 1/3: Loading data files
+2025-12-02 18:09:17,479 INFO Step 1/3: Loading data files
+2025-12-02 18:09:17 [INFO] preprocess.preprocess - Loading news data from Data/raw/MINDlarge_test/news.tsv
+2025-12-02 18:09:17,479 INFO Loading news data from Data/raw/MINDlarge_test/news.tsv
+2025-12-02 18:09:21 [INFO] preprocess.preprocess - Successfully loaded 120959 news articles
+2025-12-02 18:09:21,041 INFO Successfully loaded 120959 news articles
+2025-12-02 18:09:21 [INFO] preprocess.preprocess - Loading behavior data from Data/raw/MINDlarge_test/behaviors.tsv
+2025-12-02 18:09:21,060 INFO Loading behavior data from Data/raw/MINDlarge_test/behaviors.tsv
+2025-12-02 18:09:59 [INFO] preprocess.preprocess - Successfully loaded 2370727 impressions from 702005 users
+2025-12-02 18:09:59,848 INFO Successfully loaded 2370727 impressions from 702005 users
+2025-12-02 18:09:59 [INFO] preprocess.preprocess - Step 2/3: Building news metadata
+2025-12-02 18:09:59,858 INFO Step 2/3: Building news metadata
+Processing news: 100%|███████████████████████████████████████████████████████| 120959/120959 [00:12<00:00, 9539.57it/s]
+2025-12-02 18:10:12 [INFO] preprocess.preprocess - Built metadata for 120959 news articles
+2025-12-02 18:10:12,587 INFO Built metadata for 120959 news articles
+2025-12-02 18:10:15 [INFO] preprocess.preprocess - Saved Data/processed/test\news_meta.json (107.92 MB)
+2025-12-02 18:10:15,212 INFO Saved Data/processed/test\news_meta.json (107.92 MB)
+2025-12-02 18:10:15 [INFO] preprocess.preprocess - Step 3/3: Building impressions list
+2025-12-02 18:10:15,212 INFO Step 3/3: Building impressions list
+Processing behaviors: 100%|████████████████████████████████████████████████| 2370727/2370727 [07:10<00:00, 5507.79it/s]
+2025-12-02 18:17:25 [INFO] preprocess.preprocess - Built 2370727 impressions with 0 total clicks
+2025-12-02 18:17:25,657 INFO Built 2370727 impressions with 0 total clicks
+2025-12-02 18:22:40 [INFO] preprocess.preprocess - Saved Data/processed/test\impressions.json (1758.35 MB)
+2025-12-02 18:22:40,883 INFO Saved Data/processed/test\impressions.json (1758.35 MB)
+2025-12-02 18:22:40 [INFO] preprocess.preprocess - ============================================================
+2025-12-02 18:22:40,920 INFO ============================================================
+2025-12-02 18:22:40 [INFO] preprocess.preprocess - Preprocessing completed successfully!
+2025-12-02 18:22:40,920 INFO Preprocessing completed successfully!
+2025-12-02 18:22:40 [INFO] preprocess.preprocess - ============================================================
+2025-12-02 18:22:40,922 INFO ============================================================
+2025-12-02 18:22:40 [INFO] preprocess.preprocess - Statistics:
+2025-12-02 18:22:40,926 INFO Statistics:
+2025-12-02 18:22:40 [INFO] preprocess.preprocess -   - Total news articles: 120959
+2025-12-02 18:22:40,930 INFO   - Total news articles: 120959
+2025-12-02 18:22:43 [INFO] preprocess.preprocess -   - Total users: 702005
+2025-12-02 18:22:43,990 INFO   - Total users: 702005
+2025-12-02 18:22:43 [INFO] preprocess.preprocess -   - Total impressions: 2370727
+2025-12-02 18:22:43,990 INFO   - Total impressions: 2370727
+2025-12-02 18:22:43 [INFO] preprocess.preprocess -   - Total clicks: 0
+2025-12-02 18:22:43,990 INFO   - Total clicks: 0
+2025-12-02 18:22:43 [INFO] preprocess.preprocess -   - Click-through rate: 0.00%
+2025-12-02 18:22:43,990 INFO   - Click-through rate: 0.00%
+2025-12-02 18:22:43 [INFO] preprocess.preprocess - Output files saved to: Data/processed/test
+2025-12-02 18:22:43,990 INFO Output files saved to: Data/processed/test
+2025-12-02 18:22:43 [INFO] preprocess.preprocess - ============================================================
+2025-12-02 18:22:43,990 INFO ============================================================

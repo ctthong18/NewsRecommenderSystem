@@ -1,0 +1,145 @@
+# Aggressive configuration for 48GB GPU - Maximum speed training
+# Target: A100-80GB, H100, or similar high-end GPUs
+# Prioritizes speed over stability - use with caution
+
+data:
+  # Training data paths - MINDlarge dataset
+  train_news: "Data/raw/MINDlarge_train/news.tsv"
+  train_behaviors: "Data/raw/MINDlarge_train/behaviors.tsv"
+  
+  # Validation data paths
+  val_news: "Data/raw/MINDlarge_dev/news.tsv"
+  val_behaviors: "Data/raw/MINDlarge_dev/behaviors.tsv"
+  
+  # Optional: LLM-generated descriptions
+  llm_description: "Data/generated/news_descriptions.json"
+
+model:
+  # Large model with optimized settings
+  pretrained: "microsoft/deberta-v3-base"
+  max_length: 96  # Balanced between context and speed
+  conv_kernel_num: 512
+  query_dim: 256
+
+training:
+  # Aggressive batch settings for maximum throughput
+  batch_size: 48  # Push the limits of 48GB
+  lr: 2e-5  # Higher LR for faster convergence
+  epochs: 3  # Fewer epochs, faster training
+  npratio: 6  # Balanced negative ratio
+  history_size: 80  # Reasonable history size
+  num_workers: 12  # Maximum workers for data loading
+  
+  # Advanced training options
+  use_hard_negative: true
+  device: "cuda"
+  
+  # Aggressive scheduler settings
+  use_scheduler: true
+  scheduler_type: "linear"  # Linear decay for faster training
+  warmup_ratio: 0.03  # Minimal warmup
+  min_lr_ratio: 0.05  # Higher minimum to maintain learning
+  
+  # Large gradient accumulation for massive effective batch
+  gradient_accumulation_steps: 3  # Effective batch = 48 * 3 = 144
+  
+  # Essential optimizations
+  use_mixed_precision: true
+  use_tensorboard: true
+  
+  # Checkpoint management
+  keep_last_n_checkpoints: 3
+  metric_for_best_model: "ndcg_at_10"
+  resume_from_checkpoint: false
+  
+  # Reduced patience for faster training
+  early_stopping_patience: 2
+
+paths:
+  output_dir: "output/models"
+  log_dir: "output/logs"
+  checkpoint_dir: "output/checkpoints"
+  tensorboard_dir: "output/tensorboard"
+
+logging:
+  level: "INFO"
+  log_interval: 25  # Frequent logging for monitoring
+  use_json: false
+  enable_rotation: true
+  console_output: true
+
+llm:
+  provider: "openai"
+  model: "gpt-4o-mini"
+  temperature: 0.7
+  max_tokens: 200
+  timeout: 30
+  max_retries: 3
+  retry_delay: 1.0
+  rate_limit_rpm: 150  # Higher rate limit
+
+# Maximum performance optimizations
+performance:
+  pin_memory: true
+  prefetch_factor: 6  # Aggressive prefetching
+  persistent_workers: true
+  
+  # CUDA optimizations
+  cudnn_benchmark: true
+  cudnn_deterministic: false
+  
+  # PyTorch 2.0 compilation (if available)
+  compile_model: true  # Enable for PyTorch 2.0+
+  compile_mode: "max-autotune"  # Maximum optimization
+
+# Aggressive training strategies
+advanced:
+  dynamic_negative_sampling: true
+  curriculum_learning: false
+  
+  # Lighter regularization for faster training
+  weight_decay: 5e-4  # Reduced weight decay
+  dropout_rate: 0.05  # Lower dropout
+  
+  # Loss optimizations
+  label_smoothing: 0.05  # Light smoothing
+  
+  # Gradient management
+  max_grad_norm: 2.0  # Higher threshold
+
+# Memory usage (aggressive)
+memory_estimates:
+  model_parameters: "~3.5GB"
+  batch_memory: "~18GB"  # batch_size=48
+  optimizer_states: "~7GB"
+  gradient_accumulation: "~9GB"  # accumulation_steps=3
+  buffer_overhead: "~10GB"
+  total_estimated: "~47-48GB"  # Near maximum usage
+  safety_margin: "0-1GB"  # Minimal safety margin
+
+# Performance targets (aggressive)
+performance_estimates:
+  samples_per_second: "~1200-1800"
+  time_per_epoch: "~1.5-2 hours"
+  total_training_time: "~4.5-6 hours"  # 3 epochs
+  
+  gpu_utilization: "~90-95%"  # Maximum utilization
+  memory_utilization: "~95-98%"  # Near maximum memory usage
+  
+  # Expected metrics (may be slightly lower due to aggressive training)
+  target_auc: ">0.66"
+  target_ndcg_10: ">0.33"
+  target_mrr: ">0.30"
+
+# Emergency fallback settings
+troubleshooting:
+  # If OOM occurs (reduce immediately)
+  emergency_batch_size: 24
+  emergency_max_length: 64
+  emergency_accumulation_steps: 2
+  emergency_num_workers: 6
+  
+  # If instability occurs
+  stable_lr: 1e-5
+  stable_batch_size: 32
+  stable_warmup_ratio: 0.05

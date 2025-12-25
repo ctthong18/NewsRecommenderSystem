@@ -1,0 +1,12 @@
+.mypy_cache/
+
+Data/raw
+Data/processed
+Data/generated
+*.tsv
+*.json
+notebooks/
+
+output/checkpoints/best.pt
+
+test/

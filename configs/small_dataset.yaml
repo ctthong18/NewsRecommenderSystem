@@ -1,0 +1,41 @@
+# Configuration optimized for MIND small dataset
+# Suitable for quick experiments and development
+
+data:
+  # Small dataset paths
+  train_news: "Data/raw/MINDsmall_train/news.tsv"
+  train_behaviors: "Data/raw/MINDsmall_train/behaviors.tsv"
+  val_news: "Data/raw/MINDsmall_dev/news.tsv"
+  val_behaviors: "Data/raw/MINDsmall_dev/behaviors.tsv"
+  
+  # Optional: LLM descriptions
+  llm_description: null
+
+model:
+  # Lighter model configuration for faster training
+  pretrained: "microsoft/deberta-v3-base"
+  max_length: 64
+  conv_kernel_num: 300
+  query_dim: 200
+
+training:
+  # Optimized for small dataset
+  batch_size: 16
+  lr: 2e-5
+  epochs: 5
+  npratio: 4
+  history_size: 30
+  num_workers: 4
+  
+  # Training options
+  use_hard_negative: false
+  device: "cuda"
+
+paths:
+  output_dir: "output/small/models"
+  log_dir: "output/small/logs"
+  checkpoint_dir: "output/small/checkpoints"
+
+logging:
+  level: "INFO"
+  log_interval: 50

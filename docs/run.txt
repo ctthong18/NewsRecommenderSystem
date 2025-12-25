@@ -1,0 +1,15 @@
+pip install -r requirements.txt (nên dùng anaconda)
+
+Lấy file của mình ở drive, về tự cắt tùy ý tùy theo máy ở split_news_meta.ipynb
+Đổi tên từng file thành news_meta.json
+
+Cần cài Ollama trước: https://ollama.ai
+ollama pull llama3.2:3b
+
+python -m src.scripts.gen_descriptions --news_meta Data/processed/train/news_meta.json --provider ollama --model llama3.2:3b --use-category --use-few-shot --out_dir Data/generated
+
+dùng địa chỉ tương ứng với mỗi file ở trên
+
+python -m src.scripts.gen_descriptions --news_meta Data\first\news_meta_2.json --provider ollama --model llama3.2:3b --use-category --use-few-shot --out_dir Data/generated
+tiếp theo chạy 4
+25805

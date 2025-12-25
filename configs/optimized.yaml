@@ -1,0 +1,74 @@
+# Optimized training configuration with all optimization features enabled
+# This config demonstrates best practices for training with limited GPU memory
+
+data:
+  train_news: "Data/raw/MINDlarge_train/news.tsv"
+  train_behaviors: "Data/raw/MINDlarge_train/behaviors.tsv"
+  val_news: "Data/raw/MINDlarge_dev/news.tsv"
+  val_behaviors: "Data/raw/MINDlarge_dev/behaviors.tsv"
+  llm_description: "gpt-augmented-news-recommendation/dataset/generated/category_description_gpt4.json"
+
+model:
+  pretrained: "microsoft/deberta-v3-base"
+  max_length: 64
+  conv_kernel_num: 400
+  query_dim: 200
+
+training:
+  # Basic hyperparameters
+  batch_size: 4                        # Small batch per GPU
+  lr: 2e-5                             # Learning rate
+  epochs: 5                            # More epochs with scheduler
+  npratio: 4
+  history_size: 50
+  num_workers: 4
+  
+  # Advanced training options
+  use_hard_negative: false
+  device: "cuda"
+  
+  # Learning rate scheduler (NEW)
+  use_scheduler: true                  # Enable LR scheduling
+  scheduler_type: "cosine"             # Cosine decay after warmup
+  warmup_ratio: 0.1                    # 10% warmup
+  min_lr_ratio: 0.0                    # Decay to near zero
+  
+  # Gradient accumulation (NEW)
+  gradient_accumulation_steps: 8       # Effective batch size = 4 × 8 = 32
+  
+  # Mixed precision training (NEW)
+  use_mixed_precision: true            # Enable AMP (requires CUDA)
+  
+  # TensorBoard monitoring (NEW)
+  use_tensorboard: true                # Enable real-time monitoring
+  
+  # Checkpoint management
+  keep_last_n_checkpoints: 3
+  metric_for_best_model: "ndcg_at_10"
+  resume_from_checkpoint: false
+  
+  # Early stopping
+  early_stopping_patience: 3
+
+paths:
+  output_dir: "output/models"
+  log_dir: "output/logs"
+  checkpoint_dir: "output/checkpoints"
+  tensorboard_dir: "output/tensorboard"
+
+logging:
+  level: "INFO"
+  log_interval: 100
+  use_json: false
+  enable_rotation: true
+  console_output: true
+
+llm:
+  provider: "openai"
+  model: "gpt-4o-mini"
+  temperature: 0.7
+  max_tokens: 200
+  timeout: 30
+  max_retries: 3
+  retry_delay: 1.0
+  rate_limit_rpm: 60
