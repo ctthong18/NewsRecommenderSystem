@@ -1,2 +1,0 @@
-2025-11-15 15:10:18 [INFO] file_test - This message is logged to both console and file
-2025-11-15 15:10:18 [INFO] file_test - Log file location: output/logs/file_test.log

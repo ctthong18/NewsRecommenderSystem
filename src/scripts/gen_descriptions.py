@@ -1,8 +1,4 @@
 # scripts/gen_descriptions.py
-"""
-Generate news descriptions using local or LLM-based methods with structured logging.
-Supports OpenAI, Anthropic, Ollama, and LM Studio providers.
-"""
 import json
 import argparse
 import os

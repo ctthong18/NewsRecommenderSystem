@@ -1,9 +1,3 @@
-"""
-NAML (Neural News Recommendation with Attentive Multi-View Learning) model.
-
-This module implements the NAML architecture for news recommendation,
-combining news and user encoders with attention mechanisms.
-"""
 from typing import Optional
 
 import torch

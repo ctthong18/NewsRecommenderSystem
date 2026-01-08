@@ -1,14 +1,3 @@
-"""
-Standalone evaluation script for news recommendation models.
-
-Features:
-- Load trained model from checkpoint
-- Run evaluation on validation/test set
-- Generate comprehensive metrics report
-- Support evaluation on custom data
-- Per-category evaluation
-- Statistical significance testing
-"""
 import torch
 import argparse
 import json

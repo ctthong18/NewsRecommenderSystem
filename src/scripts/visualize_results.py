@@ -1,12 +1,3 @@
-"""
-Visualization and reporting tools for news recommendation model results.
-
-Features:
-- Plot metrics over training epochs
-- Visualize attention weights  
-- Create confusion matrix for categories
-- Generate HTML report
-"""
 import argparse
 import json
 import torch

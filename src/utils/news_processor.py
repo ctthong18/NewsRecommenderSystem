@@ -1,11 +1,3 @@
-"""
-Shared utilities for news processing across datasets.
-
-This module provides common functionality for:
-- Loading LLM descriptions
-- Building news ID to text mappings
-- Processing news metadata
-"""
 import json
 import logging
 from pathlib import Path

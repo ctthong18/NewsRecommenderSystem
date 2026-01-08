@@ -1,8 +1,3 @@
-"""
-Learning rate scheduler utilities for training optimization.
-
-Provides warmup + cosine decay scheduler for better training convergence.
-"""
 import math
 from torch.optim.lr_scheduler import LambdaLR
 from typing import Optional

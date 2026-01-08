@@ -1,10 +1,4 @@
 # src/data/dataloader_builder.py
-"""
-Optimized DataLoader builder with prefetching, pin_memory, and custom collate_fn.
-
-This module provides utilities for building high-performance DataLoaders
-with optimizations for GPU training and efficient data loading.
-"""
 import logging
 from typing import Any, Callable, Dict, List, Optional
 

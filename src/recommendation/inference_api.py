@@ -1,9 +1,3 @@
-"""
-Simple Python API wrapper for news recommendation inference.
-
-Provides a clean, easy-to-use interface for making predictions with
-comprehensive input validation and error handling.
-"""
 import torch
 import json
 import numpy as np

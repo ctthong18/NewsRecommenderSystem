@@ -1,7 +1,3 @@
-"""
-Configuration loader utility with YAML support, nested structures, 
-validation, and environment variable overrides.
-"""
 import os
 import yaml
 from pathlib import Path

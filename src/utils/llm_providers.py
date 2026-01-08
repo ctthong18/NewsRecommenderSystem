@@ -1,7 +1,3 @@
-"""
-LLM Provider abstraction for generating news descriptions.
-Supports OpenAI, Anthropic, and local models (Ollama/LM Studio).
-"""
 import os
 import time
 import json

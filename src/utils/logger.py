@@ -1,7 +1,3 @@
-"""
-Enhanced logging infrastructure with structured logging, JSON format,
-log rotation, and per-module log levels.
-"""
 import logging
 import logging.handlers
 import json

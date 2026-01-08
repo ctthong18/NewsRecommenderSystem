@@ -1,11 +1,3 @@
-"""
-Per-category evaluation for news recommendation models.
-
-Provides functionality to:
-- Group predictions by news category
-- Calculate metrics per category
-- Generate category comparison reports
-"""
 import numpy as np
 import polars as pl
 from typing import Dict, List, Tuple

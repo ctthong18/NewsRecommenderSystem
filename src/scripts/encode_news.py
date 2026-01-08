@@ -1,7 +1,3 @@
-# scripts/encode_news.py
-"""
-Encode news articles using pre-trained language models with structured logging and caching.
-"""
 import torch
 from transformers import AutoTokenizer, AutoModel
 import json, argparse, os, sys

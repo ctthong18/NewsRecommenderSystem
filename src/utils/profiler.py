@@ -1,9 +1,3 @@
-"""
-Performance profiling utilities for identifying bottlenecks.
-
-This module provides tools for profiling memory usage, execution time,
-and identifying performance bottlenecks in the news recommendation pipeline.
-"""
 import cProfile
 import functools
 import io

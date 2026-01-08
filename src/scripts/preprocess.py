@@ -1,10 +1,3 @@
-# scripts/preprocess.py
-"""
-Preprocess MIND dataset with structured logging and progress tracking.
-
-This script processes raw MIND dataset files (news.tsv, behaviors.tsv) and
-converts them into JSON format for easier consumption by the training pipeline.
-"""
 import argparse
 import json
 import logging

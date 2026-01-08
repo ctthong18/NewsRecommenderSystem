@@ -1,19 +1,3 @@
-"""
-End-to-end submission generation script for MIND leaderboard.
-
-This script performs the complete workflow:
-1. Load trained model from checkpoint
-2. Run inference on test set
-3. Format predictions in MIND leaderboard format
-4. Generate submission.zip package
-
-Usage:
-    python -m src.scripts.generate_submission \
-        --checkpoint output/checkpoints/best_model.pt \
-        --test-news Data/raw/MINDlarge_test/news.tsv \
-        --test-behaviors Data/raw/MINDlarge_test/behaviors.tsv \
-        --output-dir output/submission
-"""
 import torch
 import argparse
 import json

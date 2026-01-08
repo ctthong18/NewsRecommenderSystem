@@ -1,10 +1,3 @@
-# src/data/mind_dataset.py
-"""
-MIND Dataset implementations for training and validation.
-
-This module provides PyTorch Dataset classes for the Microsoft News Dataset (MIND)
-with support for LLM descriptions, hard negative sampling, and tokenization caching.
-"""
 import json
 import logging
 import random

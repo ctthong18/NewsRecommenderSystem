@@ -1,7 +1,3 @@
-"""
-Prompt templates for generating news descriptions.
-Includes category-specific prompts and few-shot examples.
-"""
 from typing import Dict, Optional
 
 

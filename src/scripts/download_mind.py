@@ -1,14 +1,3 @@
-"""
-MIND Dataset Downloader
-
-This script downloads the Microsoft News Dataset (MIND) from official URLs,
-extracts the zip files automatically, and verifies file integrity.
-
-Usage:
-    python -m src.scripts.download_mind --size small --output-dir Data/raw
-    python -m src.scripts.download_mind --size large --verify
-"""
-
 import argparse
 import hashlib
 import os

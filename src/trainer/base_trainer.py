@@ -1,4 +1,3 @@
-# src/recommendation/trainer/base_trainer.py
 import torch
 from tqdm import tqdm
 

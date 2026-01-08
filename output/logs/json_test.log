@@ -1,1 +1,0 @@
-{"timestamp": "2025-11-15T15:10:18.243245", "level": "INFO", "logger": "json_test", "message": "This is a JSON formatted log", "module": "(unknown file)", "function": null, "line": 0, "user_id": "12345", "action": "test"}

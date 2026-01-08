@@ -1,15 +1,3 @@
-"""
-Submission file formatter for MIND leaderboard.
-
-This module provides utilities to format model predictions into the
-official MIND dataset submission format for leaderboard evaluation.
-
-MIND Submission Format:
-    impression_id [rank1,rank2,rank3,...]
-    
-    Where ranks are 1-indexed positions of candidate news items
-    sorted by predicted relevance scores (highest to lowest).
-"""
 import json
 import zipfile
 from pathlib import Path

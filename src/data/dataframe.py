@@ -1,7 +1,3 @@
-"""
-Helper functions to read MIND dataset files.
-Based on gpt-augmented-news-recommendation implementation.
-"""
 import pandas as pd
 import polars as pl
 from pathlib import Path

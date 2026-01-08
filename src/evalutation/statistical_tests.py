@@ -1,11 +1,3 @@
-"""
-Statistical significance testing for model comparison.
-
-Provides functionality to:
-- Perform paired t-tests for model comparison
-- Calculate confidence intervals
-- Generate comparison reports
-"""
 import numpy as np
 import scipy.stats as stats
 from typing import Dict, List, Tuple

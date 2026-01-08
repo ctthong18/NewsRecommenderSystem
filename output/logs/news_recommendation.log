@@ -1,8 +1,0 @@
-2025-11-15 15:13:40 [INFO] news_recommendation.test - Logger initialized from config file
-2025-11-15 15:13:40 [INFO] news_recommendation.test - Log level: INFO
-2025-11-15 15:13:40 [INFO] news_recommendation.test - Log directory: output/logs
-2025-11-15 15:13:40 [DEBUG] news_recommendation.data - This DEBUG message from data module should appear
-2025-11-15 15:13:40 [INFO] news_recommendation.data - This INFO message from data module should appear
-2025-11-15 15:13:40 [WARNING] news_recommendation.model - This WARNING message from model module should appear
-2025-11-15 15:13:40 [INFO] news_recommendation - Processing batch
-2025-11-15 15:13:40 [WARNING] news_recommendation - Memory usage high

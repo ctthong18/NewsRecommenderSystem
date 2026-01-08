@@ -1,4 +1,3 @@
-# src/recommendation/trainer/naml_trainer.py
 import torch
 from tqdm import tqdm
 from .base_trainer import BaseTrainer

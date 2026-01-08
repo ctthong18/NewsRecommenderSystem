@@ -7,6 +7,9 @@ Data/generated
 *.json
 notebooks/
 
+
+
 output/checkpoints/best.pt
+output/submit/prediction.txt
 
 test/

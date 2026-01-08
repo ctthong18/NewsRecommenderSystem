@@ -1,12 +1,3 @@
-"""
-TensorBoard logging utility for real-time training monitoring.
-
-Features:
-- Log training and validation metrics
-- Log learning rate changes
-- Log sample predictions
-- Log model gradients and weights
-"""
 import torch
 from torch.utils.tensorboard import SummaryWriter
 from typing import Dict, Any, Optional, List

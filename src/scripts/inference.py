@@ -1,13 +1,3 @@
-"""
-Inference pipeline for news recommendation models.
-
-Features:
-- Batch inference API for processing multiple users
-- Single-user inference mode for real-time recommendations
-- Optimized inference speed (no gradient computation)
-- Support for model ensemble inference
-- Input validation and error handling
-"""
 import torch
 import argparse
 import json

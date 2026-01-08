@@ -1,9 +1,3 @@
-"""
-Sampling statistics monitoring and visualization utilities.
-
-This module provides tools to track, log, and visualize hard negative sampling
-effectiveness during training.
-"""
 import json
 import numpy as np
 from pathlib import Path

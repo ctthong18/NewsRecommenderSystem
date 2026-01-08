@@ -31,4 +31,4 @@ def preprocess_mind(dataset_dir, output_dir, llm_desc_path=None):
                                names=["impression_id", "user_id", "time", "history", "impressions"])
 
     behaviors_df.to_csv(os.path.join(output_dir, "behaviors_preprocessed.csv"), index=False)
-    print(f"✅ Tiền xử lý hoàn tất. Lưu tại {output_dir}")
+    print(f"Tiền xử lý hoàn tất. Lưu tại {output_dir}")
