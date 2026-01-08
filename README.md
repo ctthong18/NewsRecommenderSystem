@@ -5,10 +5,10 @@ A neural news recommendation system built on the NAML (Neural News Recommendatio
 ## Performance Results
 
 **MIND Dataset Evaluation:**
-- **AUC**: 0.6926 (Rank: 48)
-- **MRR**: 0.3457 (Rank: 41) 
-- **nDCG@5**: 0.3779 (Rank: 43)
-- **nDCG@10**: 0.4345 (Rank: 42)
+- **AUC**: 0.6926 (Rank: 55)
+- **MRR**: 0.3457  
+- **nDCG@5**: 0.3779 
+- **nDCG@10**: 0.4345
 
 ## Key Features
 
@@ -47,7 +47,7 @@ Candidate News × User → Dot Product → Recommendation Scores
 
 ### Prerequisites
 
-- Python 3.8+
+- Python 3.11+
 - CUDA-capable GPU (recommended: 48GB VRAM)
 - 32GB+ RAM
 
@@ -55,8 +55,8 @@ Candidate News × User → Dot Product → Recommendation Scores
 
 ```bash
 # Clone repository
-git clone <repository-url>
-cd news-recommendation
+git clone https://github.com/ctthong18/NewsRecommenderSystem
+cd NewsRecommenderSystem
 
 # Install dependencies
 pip install -r requirements.txt
@@ -82,7 +82,7 @@ tensorboard --logdir output/tensorboard
 ```bash
 # Generate predictions for MIND leaderboard
 python -m src.scripts.generate_submission \
-    --checkpoint output/checkpoints/best_model.pt \
+    --checkpoint output/checkpoints/best.pt \
     --test-news Data/raw/MINDlarge_test/news.tsv \
     --test-behaviors Data/raw/MINDlarge_test/behaviors.tsv \
     --config configs/gpu_48gb_large.yaml \
@@ -138,8 +138,8 @@ training:
 
 ```yaml
 llm:
-  provider: "openai"
-  model: "gpt-4o-mini"
+  provider: "ollama"
+  model: "llama3.2"
   temperature: 0.7
   max_tokens: 250
   rate_limit_rpm: 100
@@ -172,8 +172,8 @@ from src.utils.prompt_templates import get_prompt_template
 
 # Configure LLM
 config = LLMConfig(
-    provider="openai",
-    model="gpt-4o-mini",
+    provider="ollama",
+    model="llama3.2",
     temperature=0.7,
     max_tokens=200
 )
@@ -315,9 +315,9 @@ If you use this code in your research, please cite:
 ```bibtex
 @misc{news-recommendation-deberta-llm,
   title={News Recommendation System with DeBERTa and LLM Enhancement},
-  author={Your Name},
-  year={2024},
-  url={https://github.com/your-username/news-recommendation}
+  author={Chu Thanh Thong},
+  year={2025},
+  url={https://github.com/ctthong18/NewsRecommenderSystem}
 }
 ```
 
@@ -330,4 +330,4 @@ If you use this code in your research, please cite:
 
 ## Contact
 
-For questions or issues, please open a GitHub issue or contact [your-email@example.com].
+For questions or issues, please open a GitHub issue or contact [thongphil18@gmail.com].
